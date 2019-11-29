@@ -11,6 +11,7 @@ import {configureStore} from "../src/store";
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import {Router} from "react-router";
+import {AppLayOut} from "../src/App";
 
 const req = require.context('../src/stories', true, /\.stories\.js$/);
 const history = createBrowserHistory();
@@ -25,16 +26,16 @@ let themeWrap = (0, _addons.makeDecorator)({
     parameterName: 'info',
     allowDeprecatedUsage: true,
     wrapper: function wrapper(getStory, context, _ref) {
-        return
-        <StoreProvider store={store}>
-            <ThemeProvider theme={theme}>
-                <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Router history={history}>
-                        {getStory()}
-                    </Router>
-                </MuiPickersUtilsProvider>
-            </ThemeProvider>
-        </StoreProvider>;
+        // return <StoreProvider store={store}>
+        //     <ThemeProvider theme={theme}>
+        //         <MuiPickersUtilsProvider utils={MomentUtils}>
+        //             <Router history={history}>
+        //                 {getStory()}
+        //             </Router>
+        //         </MuiPickersUtilsProvider>
+        //     </ThemeProvider>
+        // </StoreProvider>;
+        return <AppLayOut>{getStory()}</AppLayOut>
     }
 });
 addDecorator(withInfo);
