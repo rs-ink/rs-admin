@@ -2,15 +2,15 @@ import * as actionTypes from 'actions';
 
 // noinspection SpellCheckingInspection
 const initialState = {
-    loggedIn: false,
-    // user: {
-    //     first_name: 'Shen',
-    //     last_name: 'Zhi',
-    //     email: 'demo@devias.io',
-    //     avatar: '/images/avatars/avatar_11.png',
-    //     bio: 'Brain Director',
-    //     role: 'ADMIN' // ['GUEST', 'USER', 'ADMIN']
-    // }
+    loggedIn: true,
+    user: {
+        first_name: 'Shen',
+        last_name: 'Zhi',
+        email: 'demo@devias.io',
+        avatar: '/images/avatars/avatar_11.png',
+        bio: 'Brain Director',
+        role: 'ADMIN' // ['GUEST', 'USER', 'ADMIN']
+    }
 };
 
 const sessionReducer = (state = initialState, action) => {

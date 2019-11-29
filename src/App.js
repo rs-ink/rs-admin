@@ -21,23 +21,35 @@ import './mock';
 import './assets/scss/index.scss';
 import {configureStore} from "./store";
 
-const history = createBrowserHistory();
-const store = configureStore();
+
+
+export const AppLayOut = ({children})=>{
+
+    const history = createBrowserHistory();
+    const store = configureStore();
+
+   return (
+       <StoreProvider store={store}>
+           <ThemeProvider theme={theme}>
+               <MuiPickersUtilsProvider utils={MomentUtils}>
+                   <Router history={history}>
+                       {children}
+                   </Router>
+               </MuiPickersUtilsProvider>
+           </ThemeProvider>
+       </StoreProvider>)
+       ;
+};
+
 
 const App = () => {
     return (
-        <StoreProvider store={store}>
-            <ThemeProvider theme={theme}>
-                <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Router history={history}>
-                        <ScrollReset/>
-                        <GoogleAnalytics/>
-                        {/*<CookiesNotification />*/}
-                        {renderRoutes(routes)}
-                    </Router>
-                </MuiPickersUtilsProvider>
-            </ThemeProvider>
-        </StoreProvider>
+        <AppLayOut>
+            <ScrollReset/>
+            <GoogleAnalytics/>
+            {/*<CookiesNotification />*/}
+            {renderRoutes(routes)}
+        </AppLayOut>
     );
 };
 

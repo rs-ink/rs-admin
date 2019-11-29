@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { renderRoutes } from 'react-router-config';
+// noinspection ES6CheckImport
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { LinearProgress } from '@material-ui/core';

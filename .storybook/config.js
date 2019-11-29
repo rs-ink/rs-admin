@@ -6,8 +6,15 @@ import {Provider as StoreProvider} from "react-redux";
 import React from "react";
 import theme from '../src/theme';
 import * as _addons from "@storybook/addons";
+import {createBrowserHistory} from "history";
+import {configureStore} from "../src/store";
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
+import {Router} from "react-router";
 
 const req = require.context('../src/stories', true, /\.stories\.js$/);
+const history = createBrowserHistory();
+const store = configureStore();
 
 function loadStories() {
     req.keys().forEach((filename) => req(filename));
@@ -18,7 +25,16 @@ let themeWrap = (0, _addons.makeDecorator)({
     parameterName: 'info',
     allowDeprecatedUsage: true,
     wrapper: function wrapper(getStory, context, _ref) {
-        return  <ThemeProvider theme={theme}>{getStory()}</ThemeProvider>;
+        return
+        <StoreProvider store={store}>
+            <ThemeProvider theme={theme}>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <Router history={history}>
+                        {getStory()}
+                    </Router>
+                </MuiPickersUtilsProvider>
+            </ThemeProvider>
+        </StoreProvider>;
     }
 });
 addDecorator(withInfo);
