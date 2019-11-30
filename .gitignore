@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # webstorm
-.idea/
+/.idea
 
 # lock
 yarn.lock
