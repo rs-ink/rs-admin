@@ -47,7 +47,7 @@
     "validate.js": "^0.13.1"
   },
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook": "start-storybook -p 9001 -c .storybook -s public",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

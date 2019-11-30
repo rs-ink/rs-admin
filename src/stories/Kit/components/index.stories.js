@@ -13,7 +13,10 @@ import GoogleAnalytics from "../../../components/GoogleAnalytics";
 import Markdown from "../../../components/Markdown";
 import ProjectCard from "../../../components/ProjectCard";
 import centered from '@storybook/addon-centered/react';
-import {withKnobs} from "@storybook/addon-knobs";
+import {withKnobs,boolean,text} from "@storybook/addon-knobs";
+import PricingModal from "../../../components/PricingModal";
+
+const markDownText = "# This is markDown!\r\n# Hello";
 
 storiesOf('Kit/index', module)
     .addDecorator(centered)
@@ -27,9 +30,7 @@ storiesOf('Kit/index', module)
     .add("FilesDropzone", () => <FilesDropzone/>)
     .add("GenericMoreButton", () => <GenericMoreButton/>)
     .add("GoogleAnalytics", () => <GoogleAnalytics/>)
-    .add("Label", () => <Label/>);
-
-const markDownText = "# This is markDown!\r\n# Hello";
-storiesOf("Kit/index", module).add("Markdown", () => <Markdown source={markDownText}/>);
-storiesOf("Kit/index", module).add("ProjectCard", () => <ProjectCard
-    project={{"liked": true, "author": {"avatar": "/images/avatars/avatar_1.png", name: "苗大哥"}, tags: ["测试一下"]}}/>);
+    .add("Label", () => <Label/>)
+    .add("Markdown", () => <Markdown source={text("source",markDownText)}/>)
+    .add("ProjectCard", () => <ProjectCard project={{"liked": true, "author": {"avatar": "/images/avatars/avatar_1.png", name: "苗大哥"}, tags: ["测试一下"]}}/>)
+    .add("PricingModal",()=><PricingModal open={boolean("open",true)}/>);

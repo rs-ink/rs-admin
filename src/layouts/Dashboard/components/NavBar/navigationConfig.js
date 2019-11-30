@@ -52,11 +52,11 @@ export default [
         icon: BarChartIcon,
         children: [
           {
-            title: 'Customers',
+            title: '客户',
             href: '/management/customers'
           },
           {
-            title: 'Customer Details',
+            title: '客户详情',
             href: '/management/customers/1/summary'
           },
           {

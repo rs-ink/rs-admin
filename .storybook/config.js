@@ -1,17 +1,13 @@
-import {configure, addDecorator, addParameters} from '@storybook/react';
+import {addDecorator, addParameters, configure} from '@storybook/react';
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport';
 import {withInfo} from '@storybook/addon-info';
-import {ThemeProvider} from "@material-ui/styles";
-import {Provider as StoreProvider} from "react-redux";
 import React from "react";
-import theme from '../src/theme';
 import * as _addons from "@storybook/addons";
 import {createBrowserHistory} from "history";
 import {configureStore} from "../src/store";
-import {MuiPickersUtilsProvider} from "@material-ui/pickers";
-import MomentUtils from "@date-io/moment";
-import {Router} from "react-router";
 import {AppLayOut} from "../src/App";
+
+
 
 const req = require.context('../src/stories', true, /\.stories\.js$/);
 const history = createBrowserHistory();
