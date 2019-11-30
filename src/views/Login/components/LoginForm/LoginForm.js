@@ -81,10 +81,9 @@ const LoginForm = props => {
   };
 
   const handleSubmit = async event => {
-
-    event.preventDefault();
+      event.preventDefault();
       dispatch(login(formState.values));
-    // router.history.push('/');
+      router.history.push('/');
   };
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;

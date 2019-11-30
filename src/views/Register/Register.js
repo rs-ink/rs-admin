@@ -93,7 +93,7 @@ const Register = () => {
             gutterBottom
             variant="h3"
           >
-            Sign up
+           注 册
           </Typography>
           <Typography variant="subtitle2">
             Sign up on the internal platform

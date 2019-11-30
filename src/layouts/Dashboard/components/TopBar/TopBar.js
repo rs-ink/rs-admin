@@ -98,6 +98,7 @@ const TopBar = props => {
   const classes = useStyles();
   const { history } = useRouter();
   const searchRef = useRef(null);
+
   const dispatch = useDispatch();
   const notificationsRef = useRef(null);
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
@@ -224,15 +225,18 @@ const TopBar = props => {
               </Paper>
             </ClickAwayListener>
           </Popper>
-          <Button
-            className={classes.trialButton}
-            onClick={handlePricingOpen}
-            variant="contained"
-          >
-            <LockIcon className={classes.trialIcon} />
-            Trial expired
-          </Button>
+          {/*<Button*/}
+          {/*  className={classes.trialButton}*/}
+          {/*  onClick={handlePricingOpen}*/}
+          {/*  variant="contained"*/}
+          {/*>*/}
+          {/*  <LockIcon className={classes.trialIcon} />*/}
+          {/*  Trial expired*/}
+          {/*</Button>*/}
         </Hidden>
+        {
+
+        }
         <Hidden mdDown>
           <IconButton
             className={classes.notificationsButton}
