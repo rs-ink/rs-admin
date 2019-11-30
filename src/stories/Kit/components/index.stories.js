@@ -13,8 +13,12 @@ import GoogleAnalytics from "../../../components/GoogleAnalytics";
 import Markdown from "../../../components/Markdown";
 import ProjectCard from "../../../components/ProjectCard";
 import centered from '@storybook/addon-centered/react';
-import {withKnobs,boolean,text} from "@storybook/addon-knobs";
+import {boolean, text, withKnobs} from "@storybook/addon-knobs";
 import PricingModal from "../../../components/PricingModal";
+import ReviewStars from "../../../components/ReviewStars";
+import RichEditor from "../../../components/RichEditor";
+import StackAvatars from "../../../components/StackAvatars";
+import StatusBullet from "../../../components/StatusBullet";
 
 const markDownText = "# This is markDown!\r\n# Hello";
 
@@ -31,6 +35,12 @@ storiesOf('Kit/index', module)
     .add("GenericMoreButton", () => <GenericMoreButton/>)
     .add("GoogleAnalytics", () => <GoogleAnalytics/>)
     .add("Label", () => <Label/>)
-    .add("Markdown", () => <Markdown source={text("source",markDownText)}/>)
-    .add("ProjectCard", () => <ProjectCard project={{"liked": true, "author": {"avatar": "/images/avatars/avatar_1.png", name: "苗大哥"}, tags: ["测试一下"]}}/>)
-    .add("PricingModal",()=><PricingModal open={boolean("open",true)}/>);
+    .add("Markdown", () => <Markdown source={text("source", markDownText)}/>)
+    .add("ProjectCard", () => <ProjectCard
+        project={{"liked": true, "author": {"avatar": "/images/avatars/avatar_1.png", name: "苗大哥"}, tags: ["测试一下"]}}/>)
+    .add("PricingModal", () => <PricingModal open={boolean("open", true)}/>)
+    .add("ReviewStars", () => <ReviewStars/>)
+    .add("RichEditor", () => <RichEditor/>)
+    .add("StackAvatars", () => <StackAvatars avatars={["/images/avatars/avatar_1.png","/images/avatars/avatar_1.png","/images/avatars/avatar_1.png"]}/>)
+    .add("StatusBullet", () => <StatusBullet color={"red"}/>)
+;
