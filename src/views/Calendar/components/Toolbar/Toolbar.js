@@ -16,12 +16,14 @@ import ViewConfigIcon from '@material-ui/icons/ViewComfyOutlined';
 import ViewWeekIcon from '@material-ui/icons/ViewWeekOutlined';
 import ViewDayIcon from '@material-ui/icons/ViewDayOutlined';
 import ViewAgendaIcon from '@material-ui/icons/ViewAgendaOutlined';
+import {useIntl} from "react-intl";
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
 const Toolbar = props => {
+  const {formatMessage: f} = useIntl();
   const {
     date,
     view,
@@ -38,22 +40,22 @@ const Toolbar = props => {
 
   const viewOptions = [
     {
-      label: 'Month',
+      label: f({id:'app.calendar.month'}),
       value: 'dayGridMonth',
       icon: ViewConfigIcon
     },
     {
-      label: 'Week',
+      label: f({id:'app.calendar.week'}),
       value: 'timeGridWeek',
       icon: ViewWeekIcon
     },
     {
-      label: 'Day',
+      label: f({id:'app.calendar.day'}),
       value: 'timeGridDay',
       icon: ViewDayIcon
     },
     {
-      label: 'Agenda',
+      label: f({id:'app.calendar.agenda'}),
       value: 'listWeek',
       icon: ViewAgendaIcon
     }
@@ -76,13 +78,13 @@ const Toolbar = props => {
             gutterBottom
             variant="overline"
           >
-            Calendar
+            {f({id:'app.menu.calendar'})}
           </Typography>
           <Typography
             component="h1"
             variant="h3"
           >
-            Here's what you planned
+           {f({id:'app.calendar.desc'})}
           </Typography>
         </Grid>
         <Grid item>
@@ -91,7 +93,7 @@ const Toolbar = props => {
             onClick={onEventAdd}
             variant="contained"
           >
-            Add event
+            {f({id:'app.calendar.add.event'})}
           </Button>
         </Grid>
       </Grid>
@@ -103,9 +105,9 @@ const Toolbar = props => {
       >
         <Grid item>
           <ButtonGroup>
-            <Button onClick={onDatePrev}>Prev</Button>
-            <Button onClick={onDateToday}>Today</Button>
-            <Button onClick={onDateNext}>Next</Button>
+            <Button onClick={onDatePrev}>{f({id:'app.calendar.btn.prev'})}</Button>
+            <Button onClick={onDateToday}>{f({id:'app.calendar.btn.today'})}</Button>
+            <Button onClick={onDateNext}>{f({id:'app.calendar.btn.next'})}</Button>
           </ButtonGroup>
         </Grid>
         <Hidden smDown>
@@ -117,7 +119,6 @@ const Toolbar = props => {
           <Grid item>
             {viewOptions.map(viewOption => {
               const Icon = viewOption.icon;
-
               return (
                 <Tooltip
                   key={viewOption.value}

@@ -18,13 +18,21 @@ const Chart = props => {
   const theme = useTheme();
 
   const data = {
-    datasets: [
+    dataSets: [
       {
+        barThickness: 12,
+        barPercentage: 0.5,
+        maxBarThickness: 10,
+        categoryPercentage: 0.5,
         label: 'This year',
         backgroundColor: theme.palette.primary.main,
         data: dataProp.thisYear
       },
       {
+        barThickness: 12,
+        barPercentage: 0.5,
+        maxBarThickness: 10,
+        categoryPercentage: 0.5,
         label: 'Last year',
         backgroundColor: colors.grey[200],
         data: dataProp.lastYear
@@ -47,10 +55,10 @@ const Chart = props => {
     scales: {
       xAxes: [
         {
-          barThickness: 12,
-          maxBarThickness: 10,
-          barPercentage: 0.5,
-          categoryPercentage: 0.5,
+          // barThickness: 12,
+          // maxBarThickness: 10,
+          // barPercentage: 0.5,
+          // categoryPercentage: 0.5,
           gridLines: {
             display: false,
             drawBorder: false

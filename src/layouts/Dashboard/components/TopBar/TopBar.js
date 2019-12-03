@@ -32,6 +32,7 @@ import axios from 'utils/axios';
 import useRouter from 'utils/useRouter';
 import { PricingModal, NotificationsPopover } from 'components';
 import { logout } from 'actions';
+import {useIntl} from "react-intl";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -106,6 +107,7 @@ const TopBar = props => {
   const [searchValue, setSearchValue] = useState('');
   const [notifications, setNotifications] = useState([]);
   const [openNotifications, setOpenNotifications] = useState(false);
+  const {formatMessage: f} = useIntl();
 
   useEffect(() => {
     let mounted = true;

@@ -23,6 +23,7 @@ import '@fullcalendar/list/main.css';
 import axios from 'utils/axios';
 import { Page } from 'components';
 import { AddEditEvent, Toolbar } from './components';
+import {useIntl} from "react-intl";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -89,6 +90,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Calendar = () => {
+  const {formatMessage: f} = useIntl();
   const classes = useStyles();
   const calendarRef = useRef(null);
   const theme = useTheme();
@@ -205,7 +207,7 @@ const Calendar = () => {
   return (
     <Page
       className={classes.root}
-      title="Calendar"
+      title={f({id:'app.menu.calendar'})}
     >
       <Toolbar
         date={date}

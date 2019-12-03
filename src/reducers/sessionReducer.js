@@ -1,8 +1,10 @@
 import * as actionTypes from 'actions';
+
 // noinspection SpellCheckingInspection
 const initialState = {
     loggedIn: true,
     user: {
+        id: 1,
         first_name: 'Shen',
         last_name: 'Zhi',
         email: 'demo@devias.io',
@@ -13,7 +15,6 @@ const initialState = {
 };
 
 const sessionReducer = (state = initialState, action) => {
-    console.log(action, state);
     switch (action.type) {
         case actionTypes.SESSION_LOGIN: {
             return {

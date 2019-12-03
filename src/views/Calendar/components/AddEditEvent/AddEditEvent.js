@@ -19,6 +19,7 @@ import {
   colors
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
+import {useIntl} from "react-intl";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddEditEvent = forwardRef((props, ref) => {
+  const {formatMessage: f} = useIntl();
   const {
     event,
     onDelete,
@@ -62,8 +64,8 @@ const AddEditEvent = forwardRef((props, ref) => {
   const classes = useStyles();
 
   const defaultEvent = {
-    title: 'Event title',
-    desc: 'Event description',
+    title: f({id:'app.calendar.event.title'}),
+    desc: f({id:'app.calendar.event.desc'}),
     allDay: false,
     start: moment().toDate(),
     end: moment().toDate()
@@ -120,7 +122,7 @@ const AddEditEvent = forwardRef((props, ref) => {
           <TextField
             className={classes.field}
             fullWidth
-            label="Title"
+            label={f({id:"app.label.title"})}
             name="title"
             onChange={handleFieldChange}
             value={values.title}
@@ -129,7 +131,7 @@ const AddEditEvent = forwardRef((props, ref) => {
           <TextField
             className={classes.field}
             fullWidth
-            label="Description"
+            label={f({id:"app.label.desc"})}
             name="desc"
             onChange={handleFieldChange}
             value={values.desc}
@@ -144,13 +146,13 @@ const AddEditEvent = forwardRef((props, ref) => {
                 onChange={handleFieldChange}
               />
             }
-            label="All day"
+            label={f({id:"app.calendar.event.all.day"})}
           />
           <TextField
             className={classes.field}
             defaultValue={moment(values.start).format('YYYY-MM-DDThh:mm:ss')}
             fullWidth
-            label="Start date"
+            label={f({id:"app.calendar.event.start.date"})}
             name="start"
             onChange={handleFieldChange}
             type="datetime-local"
@@ -161,7 +163,7 @@ const AddEditEvent = forwardRef((props, ref) => {
             defaultValue={moment(values.end).format('YYYY-MM-DDThh:mm:ss')}
             disabled={values.allDay}
             fullWidth
-            label="End date"
+            label={f({id:"app.calendar.event.end.date"})}
             name="end"
             onChange={handleFieldChange}
             type="datetime-local"
@@ -181,7 +183,7 @@ const AddEditEvent = forwardRef((props, ref) => {
             onClick={onCancel}
             variant="contained"
           >
-            Cancel
+            {f({id:'app.btn.cancel'})}
           </Button>
           {mode === 'add' ? (
             <Button
@@ -189,7 +191,7 @@ const AddEditEvent = forwardRef((props, ref) => {
               onClick={handleAdd}
               variant="contained"
             >
-              Add
+              {f({id:'app.btn.add'})}
             </Button>
           ) : (
             <Button
@@ -197,7 +199,7 @@ const AddEditEvent = forwardRef((props, ref) => {
               onClick={handleEdit}
               variant="contained"
             >
-              Save
+              {f({id:'app.btn.save'})}
             </Button>
           )}
         </CardActions>

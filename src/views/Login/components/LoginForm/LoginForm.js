@@ -56,7 +56,7 @@ const LoginForm = props => {
 
     setFormState(formState => ({
       ...formState,
-      isValid: errors ? false : true,
+      isValid: !errors,
       errors: errors || {}
     }));
   }, [formState.values]);
@@ -83,10 +83,10 @@ const LoginForm = props => {
   const handleSubmit = async event => {
       event.preventDefault();
       dispatch(login(formState.values));
-      router.history.push('/');
+      // router.history.push('/');
   };
   const hasError = field =>
-    formState.touched[field] && formState.errors[field] ? true : false;
+      formState.touched[field] && formState.errors[field];
   return (
     <form
       {...rest}

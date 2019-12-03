@@ -91,7 +91,7 @@ const Login = () => {
                     <Typography variant="subtitle2">
                         Sign in on the internal platform
                     </Typography>
-                    <LoginForm className={classes.loginForm}/>
+                    <LoginForm className={classes.loginForm} />
                     <Divider className={classes.divider}/>
                     <Link
                         align="center"

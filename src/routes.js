@@ -6,11 +6,11 @@ import { Redirect } from 'react-router-dom';
 import AuthLayout from './layouts/Auth';
 import ErrorLayout from './layouts/Error';
 import DashboardLayout from './layouts/Dashboard';
+
 import DashboardAnalyticsView from './views/DashboardAnalytics';
 import DashboardDefaultView from './views/DashboardDefault';
 import OverviewView from './views/Overview';
 import PresentationView from './views/Presentation';
-
 const routes = [
   {
     path: '/',

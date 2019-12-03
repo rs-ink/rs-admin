@@ -6,7 +6,8 @@ import * as _addons from "@storybook/addons";
 import {createBrowserHistory} from "history";
 import {configureStore} from "../src/store";
 import {AppLayOut} from "../src/App";
-
+import centered from "@storybook/addon-centered/react";
+import {withKnobs} from "@storybook/addon-knobs";
 
 
 const req = require.context('../src/stories', true, /\.stories\.js$/);
@@ -22,20 +23,13 @@ let themeWrap = (0, _addons.makeDecorator)({
     parameterName: 'info',
     allowDeprecatedUsage: true,
     wrapper: function wrapper(getStory, context, _ref) {
-        // return <StoreProvider store={store}>
-        //     <ThemeProvider theme={theme}>
-        //         <MuiPickersUtilsProvider utils={MomentUtils}>
-        //             <Router history={history}>
-        //                 {getStory()}
-        //             </Router>
-        //         </MuiPickersUtilsProvider>
-        //     </ThemeProvider>
-        // </StoreProvider>;
         return <AppLayOut>{getStory()}</AppLayOut>
     }
 });
 addDecorator(withInfo);
 addDecorator(themeWrap);
+addDecorator(centered);
+addDecorator(withKnobs);
 
 addParameters({
     viewport: {
