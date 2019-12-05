@@ -24,7 +24,7 @@ const routes = [
       {
         path: '/auth/login',
         exact: true,
-        component: lazy(() => import('views/Login'))
+        component: lazy(() => import('views/EncodeLogin'))
       },
       {
         path: '/auth/register',

@@ -6,7 +6,7 @@ import LockIcon from '@material-ui/icons/Lock';
 
 import {Page} from 'components';
 import gradients from 'utils/gradients';
-import LoginCode from "./components/LoginCode";
+import LoginForm from "./components/LoginForm";
 
 import axios from 'utils/axios';
 import Dialog from "@material-ui/core/Dialog";
@@ -78,67 +78,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Login = ({selfRedirect = false, history, location, ...props}) => {
-
+const Login = ({history, location}) => {
     const classes = useStyles();
-    console.log(props);
-    console.log(selfRedirect);
-    const {session, login} = useContainer(SessionContainer);
-    const searchParams = new URLSearchParams(location.search);
-    const [open, setOpen] = useState(false);
-    console.log(searchParams);
-    console.log(searchParams.get("code"));
-
-    const code = searchParams.get("code");
-    const state = searchParams.get("state");
-
-    useEffect(() => {
-        if (code && state) {
-            axios.post("/rest/wx/admin", {code, state}).then(res => {
-                console.log(res.data);
-                if (res.data.code === -1) {
-                    console.log(window.location.href.split("?")[0]);
-                    window.location.replace(window.location.href.split("?")[0]);
-                } else if (res.data.code === 5002) {
-                    //TODO 显示小程序二维码
-                    setOpen(true);
-                } else if (res.data.data.id > 0) {
-                    login({loggedIn: true, user: res.data.data});
-                    window.location.replace("/");
-                    // history.replace("/");
-                    // window.location.href = "/"
-                }
-            });
-        }
-        // eslint-disable-next-line
-    }, []);
-
-    function handleClose() {
-        setOpen(false);
-    }
-
     return (
         <Page
             className={classes.root}
             title="登录"
         >
-
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    请通过小程序授权头像与昵称
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        <img src={"/images/wxm_code.jpg"} width={258} height={258} alt={"wxm-code"}/>
-                    </DialogContentText>
-                </DialogContent>
-            </Dialog>
-
             <Card className={classes.card}>
                 <CardContent className={classes.content}>
                     <LockIcon className={classes.icon}/>
@@ -151,8 +97,7 @@ const Login = ({selfRedirect = false, history, location, ...props}) => {
                     <Typography variant="subtitle2">
                         Sign in on the internal platform
                     </Typography>
-                    {/*<LoginForm className={classes.loginForm} />*/}
-                    <LoginCode selfRedirect={selfRedirect}/>
+                    <LoginForm className={classes.loginForm} />
                     <Divider className={classes.divider}/>
                     <Link
                         align="center"

@@ -9,36 +9,14 @@ import Register from "../../views/Register";
 import AuthLayout from "../layout/AuthLayout";
 
 
-function AuthLayOut({children}) {
-    const useStyles = makeStyles(theme => ({
-
-        content: {
-            height: '100vh',
-            width:'100vw',
-        },
-    }));
-    const classes = useStyles();
-    return (<Fragment>
-        <TopBar/>
-        <main className={classes.content}>
-            <Suspense fallback={<LinearProgress/>}>
-                {children}
-            </Suspense>
-        </main>
-    </Fragment>)
-}
-
 storiesOf("Views/Auth", module)
     .add("登录页", () =>
-        <AuthLayOut>
-            <Login/>
-        </AuthLayOut>
+        <AuthLayout component={Login} />
     );
 storiesOf("Views/Auth", module).add("扫码登录", () =>
-    <AuthLayout component={EncodeLogin} selfRedirect={false}/>
+    <AuthLayout component={EncodeLogin} redirectUrl={"http://127.0.0.1:3000"} selfRedirect={true}/>
 );
 storiesOf("Views/Auth", module).add("注册页面", () =>
-    <AuthLayOut>
-        <Register/>
-    </AuthLayOut>);
+    <AuthLayout component={Register} />
+    );
 

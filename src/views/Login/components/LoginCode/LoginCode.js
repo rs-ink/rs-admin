@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import config from 'config';
 
-function LoginCode({width = '300px', height = '400px', state = new Date().getTime(), redirectUrl = window.location.href.split("?")[0], selfRedirect = false}) {
+function LoginCode({width = '300px', height = '400px', state = new Date().getTime(), redirectUrl , selfRedirect = false}) {
     const [src, setSrc] = useState();
     useEffect(() => {
         console.log(selfRedirect);
@@ -12,7 +12,7 @@ function LoginCode({width = '300px', height = '400px', state = new Date().getTim
             '&state=' + state +
             '&login_type=jssdk' +
             '&self_redirect=' + selfRedirect.toString() +
-            '&redirect_uri=' + window.encodeURIComponent(redirectUrl)
+            '&redirect_uri=' + window.encodeURIComponent(redirectUrl||window.location.href.split("?")[0])
         ;
         setSrc(uri);
         // eslint-disable-next-line
