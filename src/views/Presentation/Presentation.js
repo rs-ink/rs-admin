@@ -1,34 +1,28 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import {makeStyles} from '@material-ui/styles';
 
-import { Page } from 'components';
-import {
-  Header,
-  FAQ,
-  PluginsSupport,
-  SourceFiles,
-  UserFlows
-} from './components';
+import {Page} from 'components';
+import {FAQ, Header, PluginsSupport, SourceFiles, UserFlows} from './components';
 
 const useStyles = makeStyles(() => ({
-  root: {}
+    root: {}
 }));
 
 const Presentation = () => {
-  const classes = useStyles();
+    const classes = useStyles();
 
-  return (
-    <Page
-      className={classes.root}
-      title="Presentation"
-    >
-      <Header />
-      <UserFlows />
-      <PluginsSupport />
-      <SourceFiles />
-      <FAQ />
-    </Page>
-  );
+    return (
+        <Page
+            className={classes.root}
+            title="Presentation"
+        >
+            <Header/>
+            <UserFlows/>
+            <PluginsSupport/>
+            <SourceFiles/>
+            <FAQ/>
+        </Page>
+    );
 };
 
 export default Presentation;

@@ -4,6 +4,12 @@ import { colors } from '@material-ui/core';
 
 import mock from 'utils/mock';
 
+mock.onAny(/\/rest/).passThrough();
+
+mock.onPost("/rest/wx/admin").reply(200, {
+  id:1,user:'8756012@qq.com'
+});
+
 mock.onGet('/api/users').reply(200, {
   users: []
 });

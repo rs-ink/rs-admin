@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid } from '@material-ui/core';
 
-import { FilesDropzone } from 'components';
+import { FilesDropZone } from 'components';
 import { FileCard } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +26,7 @@ const Files = props => {
     >
       <Card>
         <CardContent>
-          <FilesDropzone />
+          <FilesDropZone />
         </CardContent>
       </Card>
       <Grid

@@ -6,18 +6,14 @@ import Login from "../../views/Login";
 import EncodeLogin from "../../views/EncodeLogin";
 import {makeStyles} from "@material-ui/styles";
 import Register from "../../views/Register";
-import Img from './img/bac.jpg'
 
 
 function AuthLayOut({children}) {
     const useStyles = makeStyles(theme => ({
         content: {
             height: '100vh',
-            paddingTop: 56,
-            backgroundImage:`url(${Img})`,
-            backgroundPosition:'center',
-            width:'100vw'
-        }
+            width:'100vw',
+        },
     }));
     const classes = useStyles();
     return (<Fragment>
@@ -29,7 +25,6 @@ function AuthLayOut({children}) {
         </main>
     </Fragment>)
 }
-
 storiesOf("Views/Auth", module)
     .add("登录页", () =>
         <AuthLayOut>

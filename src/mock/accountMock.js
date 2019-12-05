@@ -76,7 +76,7 @@ mock.onGet('/api/account/todos').reply(200, {
     },
     {
       id: uuid(),
-      title: 'Re-write the card component with hooks and context',
+      title: 'Re-write the card component with auth and context',
       deadline: moment().add(5, 'days'),
       done: false
     },
@@ -89,7 +89,7 @@ mock.onGet('/api/account/todos').reply(200, {
     {
       id: uuid(),
       title:
-        'Create todo app with react hooks just to get a better understanding of the concept',
+        'Create todo app with react auth just to get a better understanding of the concept',
       deadline: moment().add(7, 'days'),
       done: true
     }

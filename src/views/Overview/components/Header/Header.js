@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Grid, Button, Hidden } from '@material-ui/core';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import {useContainer} from "unstated-next";
+import SessionContainer from "../../../../auth/SessionContainer";
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -24,7 +25,7 @@ const Header = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
-  const session = useSelector(state => state.session);
+  const {session} = useContainer(SessionContainer);
 
   return (
     <div

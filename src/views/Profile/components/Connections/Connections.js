@@ -143,7 +143,7 @@ const Connections = props => {
         />
         <Input
           className={classes.searchInput}
-          color="inherit"
+          color="primary"
           disableUnderline
           placeholder="Search people &amp; places"
         />
