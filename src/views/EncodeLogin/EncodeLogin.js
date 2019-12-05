@@ -53,9 +53,12 @@ const EncodeLogin = ({match,location}) => {
             left: 0,
             width: '100%',
             height: '100%',
-            animation: 'cloudLoop 8s linear infinite',
-            webkitAnimation: 'cloudLoop 8s linear infinite'
-        }
+            animation: '$cloudLoop 8s linear infinite',
+        },
+        "@keyframes cloudLoop":{
+            '0%':{bottom:0,left:0},
+            '100%':{bottom:0,right:0},
+        },
     }));
     const classes = useStyles();
 

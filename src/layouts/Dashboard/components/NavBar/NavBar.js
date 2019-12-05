@@ -7,7 +7,7 @@ import {Avatar, Divider, Drawer, Hidden, Paper, Typography} from '@material-ui/c
 
 import useRouter from 'utils/useRouter';
 import {Navigation} from 'components';
-import navigationConfig from './navigationConfig';
+import navigationConfig from '../../../navigationConfig';
 import {useIntl} from "react-intl";
 import {useContainer} from "unstated-next";
 import SessionContainer from "../../../../auth/SessionContainer";

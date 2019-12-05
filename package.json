@@ -1,5 +1,5 @@
 {
-  "name": "rs-app",
+  "name": "rs-admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
