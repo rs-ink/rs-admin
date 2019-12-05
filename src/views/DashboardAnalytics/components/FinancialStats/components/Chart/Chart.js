@@ -95,7 +95,7 @@ const Chart = props => {
     },
     tooltips: {
       enabled: true,
-      mode: 'index',
+      mode: 'index.d.ts',
       intersect: false,
       caretSize: 10,
       yPadding: 20,

@@ -48,7 +48,7 @@ const Chart = props => {
     },
     tooltips: {
       enabled: true,
-      mode: 'index',
+      mode: 'index.d.ts',
       intersect: false,
       caretSize: 10,
       yPadding: 20,
@@ -61,8 +61,8 @@ const Chart = props => {
       footerFontColor: theme.palette.text.secondary,
       callbacks: {
         label: function(tooltipItem, data) {
-          const label = data['labels'][tooltipItem['index']];
-          const value = data['datasets'][0]['data'][tooltipItem['index']];
+          const label = data['labels'][tooltipItem['index.d.ts']];
+          const value = data['datasets'][0]['data'][tooltipItem['index.d.ts']];
 
           return `${label}: ${value}%`;
         }
