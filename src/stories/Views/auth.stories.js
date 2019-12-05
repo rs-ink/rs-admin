@@ -10,6 +10,7 @@ import Register from "../../views/Register";
 
 function AuthLayOut({children}) {
     const useStyles = makeStyles(theme => ({
+
         content: {
             height: '100vh',
             width:'100vw',
