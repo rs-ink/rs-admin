@@ -4,7 +4,7 @@ import Alert from "../../../components/Alert";
 import Label from "../../../components/Label";
 import SearchBar from "../../../components/SearchBar";
 import AddPost from "../../../components/AddPost";
-import AuthGuard from "../../../components/AuthGuard";
+import AuthGuard from "../../../auth/AuthGuard";
 import CodeBlock from "../../../components/CodeBlock";
 import CookiesNotification from "../../../components/CookiesNotification";
 import FilesDropzone from "../../../components/FilesDropzone";
@@ -19,12 +19,11 @@ import ReviewStars from "../../../components/ReviewStars";
 import RichEditor from "../../../components/RichEditor";
 import StackAvatars from "../../../components/StackAvatars";
 import StatusBullet from "../../../components/StatusBullet";
+import NotificationsPopover from "../../../components/NotificationsPopover";
 
 const markDownText = "# This is markDown!\r\n# Hello";
 
 storiesOf('Kit/index', module)
-    .addDecorator(centered)
-    .addDecorator(withKnobs)
     .add('Alert', () => <Alert message={"Alert Message"}/>)
     .add('SearchBar', () => <SearchBar/>)
     .add("AddPost", () => <AddPost/>)
@@ -40,6 +39,7 @@ storiesOf('Kit/index', module)
         project={{"liked": true, "author": {"avatar": "/images/avatars/avatar_1.png", name: "苗大哥"}, tags: ["测试一下"]}}/>)
     .add("PricingModal", () => <PricingModal open={boolean("open", true)}/>)
     .add("ReviewStars", () => <ReviewStars/>)
+    .add("NotificationsPopover", () => <NotificationsPopover notifications={["警告",'123123']} onClose={()=>console.log("onClose")} open={true}/>)
     .add("RichEditor", () => <RichEditor/>)
     .add("StackAvatars", () => <StackAvatars avatars={["/images/avatars/avatar_1.png","/images/avatars/avatar_1.png","/images/avatars/avatar_1.png"]}/>)
     .add("StatusBullet", () => <StatusBullet color={"red"}/>)

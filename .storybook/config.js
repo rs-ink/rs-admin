@@ -5,7 +5,7 @@ import React from "react";
 import * as _addons from "@storybook/addons";
 import {createBrowserHistory} from "history";
 import {configureStore} from "../src/store";
-import {AppLayOut} from "../src/App";
+import {AppLayout} from "../src/App";
 import centered from "@storybook/addon-centered/react";
 import {withKnobs} from "@storybook/addon-knobs";
 
@@ -23,11 +23,11 @@ let themeWrap = (0, _addons.makeDecorator)({
     parameterName: 'info',
     allowDeprecatedUsage: true,
     wrapper: function wrapper(getStory, context, _ref) {
-        return <AppLayOut>{getStory()}</AppLayOut>
+        return <AppLayout>{getStory()}</AppLayout>
     }
 });
-addDecorator(withInfo);
 addDecorator(themeWrap);
+addDecorator(withInfo);
 addDecorator(centered);
 addDecorator(withKnobs);
 

@@ -30,7 +30,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
 
-storiesOf("Material/AppBar", module).add("简单的应用栏", () => {
+storiesOf("Material/AppBar", module)
+    .add("简单的应用栏", () => {
     const useStyles = makeStyles(theme => ({
         root: {
             flexGrow: 1,
@@ -60,7 +61,8 @@ storiesOf("Material/AppBar", module).add("简单的应用栏", () => {
     );
 });
 
-storiesOf("Material/AppBar", module).add("带一个主搜索输入框的应用栏", () => {
+storiesOf("Material/AppBar", module)
+    .add("带一个主搜索输入框的应用栏", () => {
     const useStyles = makeStyles(theme => ({
         grow: {
             flexGrow: 1,

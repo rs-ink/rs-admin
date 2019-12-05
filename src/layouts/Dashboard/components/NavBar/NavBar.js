@@ -2,7 +2,6 @@ import React, {Fragment, useEffect} from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
 import {makeStyles} from '@material-ui/styles';
 import {Avatar, Divider, Drawer, Hidden, Paper, Typography} from '@material-ui/core';
 
@@ -10,6 +9,8 @@ import useRouter from 'utils/useRouter';
 import {Navigation} from 'components';
 import navigationConfig from './navigationConfig';
 import {useIntl} from "react-intl";
+import {useContainer} from "unstated-next";
+import SessionContainer from "../../../../auth/SessionContainer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -45,14 +46,13 @@ const NavBar = props => {
     const {formatMessage: f} = useIntl();
     const classes = useStyles();
     const router = useRouter();
-    const session = useSelector(state => state.session);
+    const {session} = useContainer(SessionContainer);
 
     useEffect(() => {
         if (openMobile) {
             onMobileClose && onMobileClose();
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, [router.location.pathname]);
 
     const navbarContent = (
@@ -69,9 +69,9 @@ const NavBar = props => {
                     className={classes.name}
                     variant="h4"
                 >
-                    {session.user.first_name} {session.user.last_name}
+                    {session.user.nickName}
                 </Typography>
-                <Typography variant="body2">{session.user.bio}</Typography>
+                <Typography variant="body2">{session.user.nickName}</Typography>
             </div>
             <Divider className={classes.divider}/>
             <nav className={classes.navigation}>

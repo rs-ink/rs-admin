@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProjectDetails = props => {
+
   const { match, history } = props;
   const classes = useStyles();
   const { id, tab } = match.params;

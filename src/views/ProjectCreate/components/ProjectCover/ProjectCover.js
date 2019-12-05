@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 
-import { FilesDropzone } from 'components';
+import { FilesDropZone } from 'components';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -22,7 +22,7 @@ const ProjectCover = props => {
     >
       <CardHeader title="Project cover" />
       <CardContent>
-        <FilesDropzone />
+        <FilesDropZone />
       </CardContent>
     </Card>
   );

@@ -1,9 +1,9 @@
 export { default as AddPost } from './AddPost';
 export { default as Alert } from './Alert';
-export { default as AuthGuard } from './AuthGuard';
+export { default as AuthGuard } from '../auth/AuthGuard';
 export { default as CodeBlock } from './CodeBlock';
 export { default as CookiesNotification } from './CookiesNotification';
-export { default as FilesDropzone } from './FilesDropzone';
+export { default as FilesDropZone } from './FilesDropzone';
 export { default as GenericMoreButton } from './GenericMoreButton';
 export { default as GoogleAnalytics } from './GoogleAnalytics';
 export { default as Label } from './Label';

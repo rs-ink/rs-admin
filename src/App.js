@@ -1,5 +1,4 @@
 import React from 'react';
-import {Provider as StoreProvider} from 'react-redux';
 import {createBrowserHistory} from 'history';
 import MomentUtils from '@date-io/moment';
 import {ThemeProvider} from '@material-ui/styles';
@@ -14,42 +13,43 @@ import './mixins/validate';
 import './mixins/prismjs';
 import './mock';
 import './assets/scss/index.scss';
-import {configureStore} from "./store";
+
 import {AxiosProvider} from "react-axios";
 import axiosInstance from "utils/axios"
 import {Router} from "react-router";
 import {getLocale} from './utils/locale';
 import LocaleProvider from "./components/LocaleProvider";
+import SessionContainer from "./auth/SessionContainer";
 
-export const AppLayOut = ({children}) => {
+export const AppLayout = ({children}) => {
     const history = createBrowserHistory();
-    const store = configureStore({}, history);
     const locale = getLocale();
+
     return (
-        <LocaleProvider locale={locale}>
-            <AxiosProvider instance={axiosInstance}>
-                <StoreProvider store={store}>
-                    <ThemeProvider theme={theme}>
-                        <MuiPickersUtilsProvider utils={MomentUtils}>
-                            <Router history={history}>
-                                {children}
-                            </Router>
-                        </MuiPickersUtilsProvider>
-                    </ThemeProvider>
-                </StoreProvider>
-            </AxiosProvider>
-        </LocaleProvider>
+        <SessionContainer.Provider>
+            <LocaleProvider locale={locale}>
+                <AxiosProvider instance={axiosInstance}>
+                        <ThemeProvider theme={theme}>
+                            <MuiPickersUtilsProvider utils={MomentUtils}>
+                                <Router history={history}>
+                                    {children}
+                                </Router>
+                            </MuiPickersUtilsProvider>
+                        </ThemeProvider>
+                </AxiosProvider>
+            </LocaleProvider>
+        </SessionContainer.Provider>
     );
 };
 
 const App = () => {
     return (
-        <AppLayOut>
+        <AppLayout>
             <ScrollReset/>
             {/*<GoogleAnalytics/>*/}
             {/*<CookiesNotification />*/}
             {renderRoutes(routes)}
-        </AppLayOut>
+        </AppLayout>
     );
 };
 

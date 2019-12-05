@@ -26,7 +26,7 @@ const Auth = props => {
             <TopBar />
             <main className={classes.content}>
                 <Suspense fallback={<LinearProgress />}>
-                    {renderRoutes(route.routes)}
+                    {route && renderRoutes(route.routes)}
                 </Suspense>
             </main>
         </Fragment>
