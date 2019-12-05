@@ -8,7 +8,7 @@ import MuiCardContent from "../../theme/overrides/MuiCardContent";
 import overrides from "../../theme/overrides";
 
 
-const EncodeLogin = () => {
+const EncodeLogin = ({selfRedirect = false}) => {
     const useStyles = makeStyles(theme => ({
         root: {
             width: '100%',

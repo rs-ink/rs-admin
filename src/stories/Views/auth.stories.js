@@ -6,6 +6,7 @@ import Login from "../../views/Login";
 import EncodeLogin from "../../views/EncodeLogin";
 import {makeStyles} from "@material-ui/styles";
 import Register from "../../views/Register";
+import AuthLayout from "../layout/AuthLayout";
 
 
 function AuthLayOut({children}) {
@@ -34,9 +35,7 @@ storiesOf("Views/Auth", module)
         </AuthLayOut>
     );
 storiesOf("Views/Auth", module).add("扫码登录", () =>
-    <AuthLayOut>
-        <EncodeLogin/>
-    </AuthLayOut>
+    <AuthLayout component={EncodeLogin} selfRedirect={false}/>
 );
 storiesOf("Views/Auth", module).add("注册页面", () =>
     <AuthLayOut>

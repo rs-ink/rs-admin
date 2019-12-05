@@ -7,7 +7,8 @@ import {Route} from "react-router";
 export default function AuthLayout(props) {
     const useStyles = makeStyles(theme => ({
         content: {
-            height: '100%',
+            width:'100vw',
+            height: '100vh',
             paddingTop: 56,
             [theme.breakpoints.up('sm')]: {
                 paddingTop: 64
