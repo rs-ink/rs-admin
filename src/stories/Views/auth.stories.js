@@ -26,19 +26,20 @@ function AuthLayOut({children}) {
         </main>
     </Fragment>)
 }
+
 storiesOf("Views/Auth", module)
     .add("登录页", () =>
         <AuthLayOut>
             <Login/>
         </AuthLayOut>
-    )
-    .add("扫码登录", () =>
-        <AuthLayOut>
-            <EncodeLogin/>
-        </AuthLayOut>
-    )
-    .add("注册页面", () =>
-        <AuthLayOut>
-            <Register/>
-        </AuthLayOut>);
+    );
+storiesOf("Views/Auth", module).add("扫码登录", () =>
+    <AuthLayOut>
+        <EncodeLogin/>
+    </AuthLayOut>
+);
+storiesOf("Views/Auth", module).add("注册页面", () =>
+    <AuthLayOut>
+        <Register/>
+    </AuthLayOut>);
 

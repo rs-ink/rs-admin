@@ -104,8 +104,9 @@ const Login = ({selfRedirect = false, history, location, ...props}) => {
                     setOpen(true);
                 } else if (res.data.data.id > 0) {
                     login({loggedIn: true, user: res.data.data});
-                    // window.location.replace("/")
                     window.location.replace("/");
+                    // history.replace("/");
+                    // window.location.href = "/"
                 }
             });
         }
