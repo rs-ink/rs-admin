@@ -26,5 +26,6 @@ yarn-error.log*
 /.idea
 
 # lock
-yarn.lock
-package-lock.json
+yarn.lock*
+package-lock.json*
+yarn-error.log
