@@ -1,10 +1,7 @@
 import {storiesOf} from "@storybook/react";
 import React, {Fragment, Suspense} from "react";
-import {TopBar} from "../../layouts/Dashboard/components";
-import {LinearProgress} from "@material-ui/core";
 import Login from "../../views/Login";
 import EncodeLogin from "../../views/EncodeLogin";
-import {makeStyles} from "@material-ui/styles";
 import Register from "../../views/Register";
 import AuthLayout from "../layout/AuthLayout";
 
