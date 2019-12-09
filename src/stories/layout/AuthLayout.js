@@ -1,9 +1,10 @@
 import {makeStyles} from "@material-ui/styles";
-import React, {Fragment, Suspense} from "react";
+import React, {Fragment, Suspense, useEffect} from "react";
 import {TopBar} from "../../layouts/Dashboard/components";
 import {LinearProgress} from "@material-ui/core";
 import {Route} from "react-router";
-import {renderRoutes} from "react-router-config";
+import useRouter from "../../utils/useRouter";
+import {useURLSearchParams} from "../../hooks/URLSearchParams";
 
 export default function AuthLayout(props) {
     const useStyles = makeStyles(theme => ({
@@ -17,13 +18,32 @@ export default function AuthLayout(props) {
         }
     }));
     const {component, ...res} = props;
-    console.log(res);
     const classes = useStyles();
+    const {location,history} = useRouter();
+    console.log("location::",location);
+    console.log("history::",history);
+    console.log("res::",res);
+    const {addParams,...rest} = useURLSearchParams();
+    useEffect(()=>{
+        console.log("res::",res.length);
+        if (res){
+            let redirect = false;
+            for(let p in res){
+                if (!rest[p]){
+                    redirect=true;
+                }
+            }
+            if(redirect){
+                addParams(res);
+            }
+        }
+    },[]);
+
     return (<Fragment>
         <TopBar/>
         <main className={classes.content}>
             <Suspense fallback={<LinearProgress/>}>
-                <Route path={res} component={component}  />
+                <Route  component={component}  />
             </Suspense>
         </main>
     </Fragment>)

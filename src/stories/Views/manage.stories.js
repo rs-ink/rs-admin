@@ -2,8 +2,6 @@ import {storiesOf} from "@storybook/react";
 import React from "react";
 import AuthLayout from "../layout/AuthLayout";
 import CustomerManagementList from "../../views/CustomerManagementList";
-import CustomerManagementDetails from "../../views/CustomerManagementDetails";
-import ProjectList from "../../views/ProjectList";
 import OrderManagementList from "../../views/OrderManagementList";
 import OrderManagementDetails from "../../views/OrderManagementDetails";
 import {Summary} from "../../views/CustomerManagementDetails/components";

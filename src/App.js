@@ -24,7 +24,6 @@ import SessionContainer from "./auth/SessionContainer";
 export const AppLayout = ({children}) => {
     const history = createBrowserHistory();
     const locale = getLocale();
-
     return (
         <SessionContainer.Provider>
             <LocaleProvider locale={locale}>

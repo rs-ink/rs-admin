@@ -1,5 +1,5 @@
 import {storiesOf} from "@storybook/react";
-import React, {Fragment, Suspense} from "react";
+import React from "react";
 import AuthLayout from "../layout/AuthLayout";
 import Error401 from "../../views/Error401";
 import Error404 from "../../views/Error404";

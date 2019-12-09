@@ -4,7 +4,6 @@ import {withInfo} from '@storybook/addon-info';
 import React from "react";
 import * as _addons from "@storybook/addons";
 import {createBrowserHistory} from "history";
-import {configureStore} from "../src/store";
 import {AppLayout} from "../src/App";
 import centered from "@storybook/addon-centered/react";
 import {withKnobs} from "@storybook/addon-knobs";
@@ -12,7 +11,6 @@ import {withKnobs} from "@storybook/addon-knobs";
 
 const req = require.context('../src/stories', true, /\.stories\.js$/);
 const history = createBrowserHistory();
-const store = configureStore();
 
 function loadStories() {
     req.keys().forEach((filename) => req(filename));

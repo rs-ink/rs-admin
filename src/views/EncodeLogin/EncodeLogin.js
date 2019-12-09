@@ -3,17 +3,17 @@ import {makeStyles} from '@material-ui/styles';
 import {Card, CardContent, Typography} from '@material-ui/core';
 import {Page} from 'components';
 import AddSvg from "./components/Svg";
-import LoginCode from "../Login/components/LoginCode";
-import PropTypes from 'prop-types';
-import {useContainer} from "unstated-next";
-import SessionContainer from "../../auth/SessionContainer";
+import LoginCode from "./components/LoginCode";
+import  {useSession} from "auth/SessionContainer";
 import axios from "../../utils/axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Dialog from "@material-ui/core/Dialog";
+import {useURLSearchParams} from "hooks";
+import global from "../../global";
 
-const EncodeLogin = ({match,location}) => {
+const EncodeLogin = () => {
     const useStyles = makeStyles(theme => ({
         root: {
             width: '100%',
@@ -55,27 +55,20 @@ const EncodeLogin = ({match,location}) => {
             height: '100%',
             animation: '$cloudLoop 8s linear infinite',
         },
-        "@keyframes cloudLoop":{
-            '0%':{bottom:0,left:0},
-            '100%':{bottom:0,right:0},
+        "@keyframes cloudLoop": {
+            '0%': {bottom: 0, left: 0},
+            '100%': {bottom: 0, right: 0},
         },
     }));
     const classes = useStyles();
 
-    const {redirectUrl,selfRedirect} = match.path;
-
-    const {login} = useContainer(SessionContainer);
-
-    const searchParams = new URLSearchParams(location.search);
+    const {login} = useSession();
 
     const [open, setOpen] = useState(false);
-    console.log(searchParams);
-    console.log(searchParams.get("code"));
-
-    const code = searchParams.get("code");
-    const state = searchParams.get("state");
+    const { code, state,redirectUrl,selfRedirect} = useURLSearchParams();
 
     useEffect(() => {
+        console.log("redirectUrl",redirectUrl);
         if (code && state) {
             axios.post("/rest/wx/admin", {code, state}).then(res => {
                 console.log(res.data);
@@ -94,7 +87,7 @@ const EncodeLogin = ({match,location}) => {
             });
         }
         // eslint-disable-next-line
-    }, []);
+    }, [code,selfRedirect,redirectUrl]);
 
     function handleClose() {
         setOpen(false);
@@ -119,7 +112,7 @@ const EncodeLogin = ({match,location}) => {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            <img src={"/images/wxm_code.jpg"} width={258} height={258} alt={"wxm-code"}/>
+                            <img src={global.WxmQRCodeImg} width={258} height={258} alt={"wxm-code"}/>
                         </DialogContentText>
                     </DialogContent>
                 </Dialog>
@@ -140,8 +133,5 @@ const EncodeLogin = ({match,location}) => {
         </Page>
     );
 };
-EncodeLogin.propTypes = {
-    selfRedirect: PropTypes.bool,
-    redirectUrl: PropTypes.string
-};
+
 export default EncodeLogin;

@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
-import config from 'config';
+import global from 'global';
 
 function LoginCode({width = '300px', height = '400px', state = new Date().getTime(), redirectUrl , selfRedirect = false}) {
     const [src, setSrc] = useState();
     useEffect(() => {
-        console.log(selfRedirect);
-
-        let uri = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + config.AppId +
+        let uri = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + global.AppId +
             '&scope=snsapi_login' +
             '&state=' + state +
             '&login_type=jssdk' +
@@ -23,7 +21,7 @@ function LoginCode({width = '300px', height = '400px', state = new Date().getTim
 
 LoginCode.propTypes = {
     redirectUrl: PropTypes.string,
-    selfRedirect: PropTypes.bool,
+    selfRedirect: PropTypes.string,
 };
 
 export default LoginCode

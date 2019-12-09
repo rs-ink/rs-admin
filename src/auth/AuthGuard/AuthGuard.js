@@ -6,7 +6,7 @@ import {useContainer} from "unstated-next";
 // Example of user roles: ['GUEST', 'USER', 'ADMIN'];
 
 
-export default function AuthGuard(props) {
+function AuthGuard(props) {
     const {children, history} = props;
     const {isLogin, session} = useContainer(SessionContainer);
     console.log("AuthGuard:::", props);
@@ -30,3 +30,4 @@ AuthGuard.propTypes = {
     roles: PropTypes.array
 };
 
+export default AuthGuard;
