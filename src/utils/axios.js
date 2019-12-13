@@ -11,6 +11,7 @@ const axiosConfig = {
     // },
 };
 const instance = axios.create(axiosConfig);
+
 instance.defaults.method = 'post';
 instance.interceptors.request.use(function (config) {
     return config;

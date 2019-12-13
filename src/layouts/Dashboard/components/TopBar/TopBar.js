@@ -30,6 +30,8 @@ import axios from 'utils/axios';
 import useRouter from 'utils/useRouter';
 import {NotificationsPopover, PricingModal} from 'components';
 import {useIntl} from "react-intl";
+import {useContainer} from "unstated-next";
+import SessionContainer from "../../../../auth/SessionContainer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -96,6 +98,8 @@ const TopBar = props => {
     const classes = useStyles();
     const {history} = useRouter();
     const searchRef = useRef(null);
+
+    const {session, isLogin} = useContainer(SessionContainer);
 
     const notificationsRef = useRef(null);
     const [pricingModalOpen, setPricingModalOpen] = useState(false);
