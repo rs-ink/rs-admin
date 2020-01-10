@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 
-import axios from 'utils/axios';
+import axiosInstance from 'utils/axios';
 import { Page, Paginate, SearchBar } from 'components';
 import { Header, ProjectCard } from './components';
 
@@ -30,7 +30,7 @@ const ProjectManagementList = () => {
     let mounted = true;
 
     const fetchProjects = () => {
-      axios.get('/api/projects').then(response => {
+      axiosInstance.get('/api/projects').then(response => {
         if (mounted) {
           setProjects(response.data.projects);
         }

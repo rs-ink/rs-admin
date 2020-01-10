@@ -1,20 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import {makeStyles} from '@material-ui/styles';
 import {Avatar, Card, CardContent, CardMedia, Divider, Link, Typography} from '@material-ui/core';
 import LockIcon from '@material-ui/icons/Lock';
-
 import {Page} from 'components';
 import gradients from 'utils/gradients';
 import LoginForm from "./components/LoginForm";
-
-import axios from 'utils/axios';
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import {useContainer} from "unstated-next";
-import SessionContainer from "../../auth/SessionContainer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -97,7 +88,7 @@ const Login = ({history, location}) => {
                     <Typography variant="subtitle2">
                         Sign in on the internal platform
                     </Typography>
-                    <LoginForm className={classes.loginForm} />
+                    <LoginForm className={classes.loginForm}/>
                     <Divider className={classes.divider}/>
                     <Link
                         align="center"

@@ -1,13 +1,18 @@
 import uuid from 'uuid/v1';
 import moment from 'moment';
 import { colors } from '@material-ui/core';
-
 import mock from 'utils/mock';
 
-//TODO 不走mock 直连服务器
-// mock.onAny(/\/rest/).passThrough();
+let baseCode= {'code':0,'msg':'接口调用成功'};
 
-mock.onPost("/rest/wx/admin").reply(200, {"code":0,"data":{"id":18,"createTime":"2019-10-27T14:33:33+08:00","updateTime":"2019-12-05T09:29:42+08:00","openId":"oJLdO5Rp-HTg3k_8IwO30rCGPLDU","unionId":"oe6Vz1n6DbM-kkZcmLTbuJemyYaU","nickName":"职业人贩子-Frank","phone":"18653256546","province":"Shandong","country":"China","city":"Qingdao","language":"zh_CN","avatar":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eq4aoRib52vicFasqSqO6Rp92JhrYHocWmaliafoWQlt3lI4uXnNrBv6J2tQYuutD5zMdGsYMbF88J1A/132","gender":1,"admin":true,"state":true,"customerId":0}});
+//TODO 不走mock 直连服务器
+mock.onAny(/\/rest/).passThrough();
+
+mock.onPost('/rest/wx/admin').reply(200, {'code':0,'data':{'id':18,'createTime':'2019-10-27T14:33:33+08:00','updateTime':'2019-12-05T09:29:42+08:00','openId':'oJLdO5Rp-HTg3k_8IwO30rCGPLDU','unionId':'oe6Vz1n6DbM-kkZcmLTbuJemyYaU','nickName':'职业人贩子-Frank','phone':'18653256546','province':'Shandong','country':'China','city':'Qingdao','language':'zh_CN','avatar':'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eq4aoRib52vicFasqSqO6Rp92JhrYHocWmaliafoWQlt3lI4uXnNrBv6J2tQYuutD5zMdGsYMbF88J1A/132','gender':1,'admin':true,'state':true,'customerId':0}});
+mock.onPost('/rest/auth/register').reply(200,{
+ ...baseCode,
+  data:{}
+});
 
 mock.onGet('/api/users').reply(200, {
   users: []

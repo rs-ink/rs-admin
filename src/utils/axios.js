@@ -1,7 +1,9 @@
 import axios from 'axios';
+import PropTypes from "prop-types";
+import config from 'config';
 
 const axiosConfig = {
-    baseURL: "http://s.zhilianqifu.cn",
+    baseURL: config.BaseUrl,
     responseType: 'json',
     withCredentials: true,
     mode: 'cors',
@@ -10,19 +12,39 @@ const axiosConfig = {
     //     host: '127.0.0.1', port: 8888
     // },
 };
-const instance = axios.create(axiosConfig);
+const axiosInstance = axios.create(axiosConfig);
 
-instance.defaults.method = 'post';
-instance.interceptors.request.use(function (config) {
+axiosInstance.defaults.method = 'post';
+
+axiosInstance.interceptors.request.use(function (config) {
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
 
-instance.interceptors.response.use(function (response) {
+axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     return Promise.reject(error);
 });
+const uploadFile = ({uri,file, onUploadProgress}) => {
+    let forms = new FormData();
+    let configs = {
+        responseType: 'json',
+        withCredentials: true,
+        mode: 'cors',
+        headers: {'Content-Type': 'multipart/form-data'},
+    };
+    if (onUploadProgress && 'function' === typeof onUploadProgress) {
+        configs = {...configs, onUploadProgress}
+    }
+    forms.append('file', file);
+    return axiosInstance.post(uri, forms, configs)
+};
 
-export default instance;
+uploadFile.propTypes = {
+    file: PropTypes.object,
+    onUploadProgress: PropTypes.func,
+};
+export default axiosInstance;
+export {uploadFile, axiosConfig};

@@ -28,7 +28,6 @@ addDecorator(themeWrap);
 addDecorator(withInfo);
 addDecorator(centered);
 addDecorator(withKnobs);
-
 addParameters({
     viewport: {
         viewports: INITIAL_VIEWPORTS, // newViewports would be an ViewportMap. (see below for examples)

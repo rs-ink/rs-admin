@@ -1,23 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from 'react';
-import validate from 'validate.js';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
 import {makeStyles} from '@material-ui/styles';
 import {Button, TextField} from '@material-ui/core';
-
 import useRouter from 'utils/useRouter';
-import {useContainer} from "unstated-next";
-import SessionContainer from "../../../../auth/SessionContainer";
+import {useSession} from "auth/SessionContainer";
+import axiosInstance from "utils/axios";
+import {useMessageHook} from "hooks/MessageHook";
+import {useFormValidate} from "hooks/FormValidate";
 
 const schema = {
     email: {
-        presence: {allowEmpty: false, message: 'is required'},
+        presence: {allowEmpty: false, message: '邮箱不正确'},
         email: true
     },
     password: {
-        presence: {allowEmpty: false, message: 'is required'}
+        presence: {allowEmpty: false, message: '不能为空'}
     }
 };
 
@@ -40,53 +39,27 @@ const useStyles = makeStyles(theme => ({
 
 const LoginForm = props => {
     const {className, ...rest} = props;
-    const {login} = useContainer(SessionContainer);
+    const {login} = useSession();
     const classes = useStyles();
-    const router = useRouter();
+    const {formState, handleChange, hasError, errorInfo, value} = useFormValidate({schema});
 
-    const [formState, setFormState] = useState({
-        isValid: false,
-        values: {},
-        touched: {},
-        errors: {}
-    });
-
-    useEffect(() => {
-        const errors = validate(formState.values, schema);
-
-        setFormState(formState => ({
-            ...formState,
-            isValid: !errors,
-            errors: errors || {}
-        }));
-    }, [formState.values]);
-
-    const handleChange = event => {
-        event.persist();
-
-        setFormState(formState => ({
-            ...formState,
-            values: {
-                ...formState.values,
-                [event.target.name]:
-                    event.target.type === 'checkbox'
-                        ? event.target.checked
-                        : event.target.value
-            },
-            touched: {
-                ...formState.touched,
-                [event.target.name]: true
-            }
-        }));
-    };
-
+    const {history} = useRouter();
+    const {warn} = useMessageHook();
     const handleSubmit = async event => {
         event.preventDefault();
         console.log(formState.values);
+        axiosInstance.post("/rest/auth/login", {...formState.values})
+            .then(res => {
+                if (res.data.code !== 0) {
+                    warn(res.data.code + res.data.msg);
+                } else {
+                    login({user: res.data.data});
+                    history.push("/");
+                }
+            })
+
         // router.history.push('/');
     };
-    const hasError = field =>
-        formState.touched[field] && formState.errors[field];
     return (
         <form
             {...rest}
@@ -95,26 +68,26 @@ const LoginForm = props => {
         >
             <div className={classes.fields}>
                 <TextField
-                    error={hasError('email')}
                     fullWidth
-                    helperText={hasError('email') ? formState.errors.email[0] : null}
-                    label="Email address"
+                    label="邮箱"
                     name="email"
-                    onChange={handleChange}
-                    value={formState.values.email || ''}
+                    value={value('email')}
+                    error={hasError('email')}
+                    helperText={errorInfo('email')}
                     variant="outlined"
+                    onChange={handleChange}
                 />
                 <TextField
                     error={hasError('password')}
                     fullWidth
                     helperText={
-                        hasError('password') ? formState.errors.password[0] : null
+                        errorInfo('password')
                     }
-                    label="Password"
+                    label="密码"
                     name="password"
                     onChange={handleChange}
                     type="password"
-                    value={formState.values.password || ''}
+                    value={value('password')}
                     variant="outlined"
                 />
             </div>

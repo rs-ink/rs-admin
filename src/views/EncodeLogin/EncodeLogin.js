@@ -11,7 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Dialog from "@material-ui/core/Dialog";
 import {useURLSearchParams} from "hooks";
-import global from "../../global";
+import global from "../../config";
 
 const EncodeLogin = () => {
     const useStyles = makeStyles(theme => ({

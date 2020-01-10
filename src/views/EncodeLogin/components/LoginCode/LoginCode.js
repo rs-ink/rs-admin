@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
-import global from 'global';
+import config from 'config';
 
-function LoginCode({width = '300px', height = '400px', state = new Date().getTime(), redirectUrl , selfRedirect = false}) {
+function LoginCode({width = '300px', height = '400px', state = new Date().getTime(), redirectUrl, selfRedirect = false}) {
     const [src, setSrc] = useState();
     useEffect(() => {
-        let uri = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + global.AppId +
+        let uri = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + config.AppId +
             '&scope=snsapi_login' +
             '&state=' + state +
             '&login_type=jssdk' +
             '&self_redirect=' + selfRedirect.toString() +
-            '&redirect_uri=' + window.encodeURIComponent(redirectUrl||window.location.href.split("?")[0])
+            '&redirect_uri=' + window.encodeURIComponent(redirectUrl || window.location.href.split("?")[0])
         ;
         setSrc(uri);
         // eslint-disable-next-line

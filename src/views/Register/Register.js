@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
       width: '50%'
     }
   },
+  ss:{},
   content: {
     padding: theme.spacing(8, 4, 3, 4)
   },
@@ -80,7 +81,6 @@ const useStyles = makeStyles(theme => ({
 
 const Register = () => {
   const classes = useStyles();
-
   return (
     <Page
       className={classes.root}

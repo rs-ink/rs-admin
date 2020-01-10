@@ -9,8 +9,7 @@ import useRouter from 'utils/useRouter';
 import {Navigation} from 'components';
 import navigationConfig from '../../../navigationConfig';
 import {useIntl} from "react-intl";
-import {useContainer} from "unstated-next";
-import SessionContainer from "../../../../auth/SessionContainer";
+import {useSession} from "auth";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -46,7 +45,7 @@ const NavBar = props => {
     const {formatMessage: f} = useIntl();
     const classes = useStyles();
     const router = useRouter();
-    const {session} = useContainer(SessionContainer);
+    const {session} = useSession();
 
     useEffect(() => {
         if (openMobile) {
@@ -63,7 +62,6 @@ const NavBar = props => {
                     className={classes.avatar}
                     component={RouterLink}
                     src={session.user.avatar}
-                    to="/profile/1/timeline"
                 />
                 <Typography
                     className={classes.name}

@@ -34,7 +34,7 @@ const FAQ = props => {
 
   const faqs = [
     {
-      title: 'What do we use for styling our components?',
+      title: 'What do we use for styling our component?',
       description:
         'We use Material-ui\'s auth api as we think it’s the best way of avoiding clutter.'
     },

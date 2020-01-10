@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/styles';
 import {LinearProgress} from '@material-ui/core';
 
 import {ChatBar, NavBar, TopBar} from './components';
-import AuthGuard from "../../auth/AuthGuard";
+import {AuthGuard} from "../../auth";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -69,7 +69,6 @@ const Dashboard = props => {
                         </Suspense>
                     </main>
                 </div>
-                <ChatBar/>
             </div>
         </AuthGuard>
     );

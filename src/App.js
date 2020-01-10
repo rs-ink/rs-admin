@@ -14,6 +14,8 @@ import './mixins/prismjs';
 import './mock';
 import './assets/scss/index.scss';
 
+import {SnackbarProvider} from "notistack";
+
 import {AxiosProvider} from "react-axios";
 import axiosInstance from "utils/axios"
 import {Router} from "react-router";
@@ -21,13 +23,15 @@ import {getLocale} from './utils/locale';
 import LocaleProvider from "./components/LocaleProvider";
 import SessionContainer from "./auth/SessionContainer";
 
+
 export const AppLayout = ({children}) => {
     const history = createBrowserHistory();
     const locale = getLocale();
     return (
-        <SessionContainer.Provider>
-            <LocaleProvider locale={locale}>
-                <AxiosProvider instance={axiosInstance}>
+        <SnackbarProvider maxSnack={3}>
+            <SessionContainer.Provider>
+                <LocaleProvider locale={locale}>
+                    <AxiosProvider instance={axiosInstance}>
                         <ThemeProvider theme={theme}>
                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                 <Router history={history}>
@@ -35,9 +39,10 @@ export const AppLayout = ({children}) => {
                                 </Router>
                             </MuiPickersUtilsProvider>
                         </ThemeProvider>
-                </AxiosProvider>
-            </LocaleProvider>
-        </SessionContainer.Provider>
+                    </AxiosProvider>
+                </LocaleProvider>
+            </SessionContainer.Provider>
+        </SnackbarProvider>
     );
 };
 
