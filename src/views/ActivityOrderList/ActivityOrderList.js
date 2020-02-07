@@ -5,6 +5,7 @@ import Header from "./component/Header";
 import axiosInstance from "../../utils/axios";
 import OrderCard from "./component/OrderCard/OrderCard";
 import Paper from "@material-ui/core/Paper";
+import {GridList} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,14 +44,17 @@ const ActivityOrderList = ({match}) => {
     >
         <Header id={id}/>
         <Paper className={classes.content} style={{display: "flex", justifyContent: "space-around"}}>
-            {
-                orders && orders.map((order, index) => <OrderCard key={index} {...order} delItem={(id) => {
-                    axiosInstance.post("/rest/order/del", {id: String(id)}).then(res => {
-                        console.log(res);
-                        refresh();
-                    })
-                }}/>)
-            }
+            <GridList>
+                {
+                    orders && orders.map((order, index) => <OrderCard key={index} {...order} delItem={(id) => {
+                        axiosInstance.post("/rest/order/del", {id: String(id)}).then(res => {
+                            console.log(res);
+                            refresh();
+                        })
+                    }}/>)
+                }
+            </GridList>
+
         </Paper>
     </Page>
 };

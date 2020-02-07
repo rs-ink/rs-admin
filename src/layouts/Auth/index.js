@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { LinearProgress } from '@material-ui/core';
 
 import {TopBar} from "../Dashboard/components";
+import {useURLSearchParams} from "../../hooks/URLSearchParams";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -20,7 +21,6 @@ const Auth = props => {
     const { route } = props;
 
     const classes = useStyles();
-
     return (
         <Fragment>
             <TopBar />

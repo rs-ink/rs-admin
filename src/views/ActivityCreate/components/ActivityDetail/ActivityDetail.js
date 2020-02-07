@@ -53,6 +53,7 @@ const ActivityDetail = ({id}) => {
                 console.log(res);
                 setValues(res.data.data);
                 set(res.data.data.images || []);
+
                 setWait(false);
             })
         }
@@ -76,7 +77,7 @@ const ActivityDetail = ({id}) => {
     const calendarMinDate = calendarTrigger === 'startTime' ? moment() : moment(formState.values.startTime).add(1, 'day');
 
     // const [files,setFiles]=useState([]);
-    const [files, {set,push, removeAt}] = useList(formState.values.images || []);
+    const [files, {set, push, removeAt}] = useList(formState.values.images || []);
 
     useEffect(() => {
         setValues({images: files})
@@ -166,6 +167,71 @@ const ActivityDetail = ({id}) => {
                         name="endTime"
                         onClick={() => handleCalendarOpen('endTime')}
                         value={moment(formState.values.endTime).format('YYYY-MM-DD hh:mm:ss')}
+                        variant="outlined"
+                    />
+                </Grid>
+            </CardContent>
+            <CardContent>
+                <Grid container={true} justify={"space-around"}>
+                    <TextField
+                        className={classes.dateField}
+                        label="*邀请函描述1 看房时间"
+                        name="kanFangDateStr"
+                        type={'string'}
+                        defaultValue={value('kanFangDateStr')}
+                        value={value('kanFangDateStr')}
+                        helperText={errorInfo('kanFangDateStr')}
+                        error={hasError('kanFangDateStr')}
+                        onChange={handleChange}
+                        variant="outlined"
+                    />
+                    <TextField
+                        className={classes.dateField}
+                        label="*邀请函描述2 看房地点"
+                        name="kanFangDiDian"
+                        type={'string'}
+                        defaultValue={value('kanFangDiDian')}
+                        value={value('kanFangDiDian')}
+                        helperText={errorInfo('kanFangDiDian')}
+                        error={hasError('kanFangDiDian')}
+                        onChange={handleChange}
+                        variant="outlined"
+                    />
+                    <TextField
+                        className={classes.dateField}
+                        label="*邀请函描述3 开放商"
+                        name="inviteInfosaaaa"
+                        type={'string'}
+                        value={value('inviteInfos') ? value('inviteInfos')[0] : ""}
+                        helperText={errorInfo('inviteInfos')}
+                        error={hasError('inviteInfos')}
+                        onChange={(e) => {
+                            if (e.target.value !== "") {
+                                e.persist();
+                                let inviteInfos = value('inviteInfos') || [""];
+                                console.log(inviteInfos);
+                                inviteInfos[0] =  String(e.target.value);
+                                setValues({inviteInfos})
+                            }
+                        }}
+                        variant="outlined"
+                    />
+                    <TextField
+                        className={classes.dateField}
+                        label="*邀请函描述3 技术支持"
+                        name="inviteInfosbbb"
+                        type={'string'}
+                        value={value('inviteInfos') ? value('inviteInfos')[1]:""}
+                        helperText={errorInfo('inviteInfos')}
+                        error={hasError('inviteInfos')}
+                        onChange={(e) => {
+                            if (e.target.value !== "") {
+                                e.persist();
+                                let inviteInfos = value('inviteInfos') || ["", ""];
+                                inviteInfos[1] = e.target.value;
+                                setValues({inviteInfos})
+                            }
+                        }}
                         variant="outlined"
                     />
                 </Grid>
